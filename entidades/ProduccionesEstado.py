@@ -1,0 +1,4 @@
+class ProduccionesEstado:
+    
+    produccion = ""
+    estadoSiguiente = ""

@@ -1,0 +1,22 @@
+{
+    "terminales": [
+        "b",
+        "a"
+    ],
+    "noTerminales": [
+        "S",
+        "A",
+        "B",
+        "C",
+	"D"
+    ],
+    "simboloInicial": "S",
+    "producciones": [
+        "S::BC",
+        "S::DA",
+        "B::b",
+        "C::AA",
+        "A::a",
+        "D::ba"
+    ]
+}
