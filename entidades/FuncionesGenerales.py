@@ -7,7 +7,6 @@ class FuncionesGenerales:
         gram = Gramatica()
         with open(rutaArchivo, 'r') as file:
             data = json.load(file)
-            print(data)
 
             for terminal in data["terminales"]:
                 gram.addTerminal(terminal)
@@ -20,5 +19,5 @@ class FuncionesGenerales:
             for produccion in data["producciones"]:
                 gram.addProduccion(produccion)
 
-        return gram 
+        return gram
 	
