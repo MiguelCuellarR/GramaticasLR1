@@ -1,12 +1,8 @@
-#Gramatica = Terminales, NoTerminales, SimboloInicial, Producciones
-#Estados = id, Lista<String Producciones>
-#Analizador = metodos importantes pa identificar LR1
-
 class Gramatica:
 
     def __init__(self):    
-        self._terminales = []
-        self._noTerminales = []
+        self._terminales = set()
+        self._noTerminales = set()
         self._simboloInicial = ""
         self._producciones = []
 
@@ -26,10 +22,10 @@ class Gramatica:
         self._simboloInicial = simboloInicial
 
     def addTerminal(self, terminal):
-        self._terminales.append(terminal)
+        self._terminales.add(terminal)
 
     def addNoTerminal(self, noTerminal):
-        self._noTerminales.append(noTerminal)
+        self._noTerminales.add(noTerminal)
 
     def addProduccion(self, produccion):
         self._producciones.append(produccion)

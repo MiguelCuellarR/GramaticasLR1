@@ -8,5 +8,3 @@ gram = fncGen.leerJson(ruta)
 
 gram.imprimir()
 
-
-
