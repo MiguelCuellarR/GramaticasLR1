@@ -7,6 +7,3 @@ gram = Gramatica()
 gram = fncGen.leerJson(ruta)
 
 gram.imprimir()
-
-
-
