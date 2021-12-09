@@ -2,4 +2,6 @@ from Gramatica import Gramatica as gram
 
 class LR1:
 
-    print(gram)
+    def __init__(self):
+        self._estados = []
+

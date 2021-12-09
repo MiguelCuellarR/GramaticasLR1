@@ -1,10 +1,12 @@
 from FuncionesGenerales import FuncionesGenerales as fncGen
+from Gramatica import Gramatica
 
-#C:\Users\MIGUEL_ANGEL\Desktop\ProyectoLR1\archivos\gramatica1.json
-#C:\Users\MIGUEL_ANGEL\Desktop\ProyectoLR1\archivos\gramatica2.json
-ruta = 'archivos\gramatica2.json'
+ruta = 'archivos\gramatica1.json'
 
-fncGen.leerJson(ruta)
+gram = Gramatica()
+gram = fncGen.leerJson(ruta)
+
+gram.imprimir()
 
 
 

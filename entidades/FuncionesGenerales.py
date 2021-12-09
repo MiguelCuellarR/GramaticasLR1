@@ -1,23 +1,24 @@
 import json
-from Gramatica import Gramatica as gram
+from Gramatica import Gramatica
 
 class FuncionesGenerales:
 
     def leerJson(rutaArchivo):
+        gram = Gramatica()
         with open(rutaArchivo, 'r') as file:
             data = json.load(file)
             print(data)
 
             for terminal in data["terminales"]:
-                gram.addTerminal(gram, terminal)
+                gram.addTerminal(terminal)
             
             for noTerminal in data["noTerminales"]:
-                gram.addNoTerminal(gram, noTerminal)
+                gram.addNoTerminal(noTerminal)
 
-            gram.setSimboloInicial(gram, data["simboloInicial"])
+            gram.setSimboloInicial(data["simboloInicial"])
 
             for produccion in data["producciones"]:
-                gram.addProduccion(gram, produccion)
+                gram.addProduccion(produccion)
 
-            gram.imprimir(gram)
+        return gram 
 	

@@ -2,43 +2,42 @@
 #Estados = id, Lista<String Producciones>
 #Analizador = metodos importantes pa identificar LR1
 
-from typing import List, Set
-
 class Gramatica:
 
-    terminales = list()
-    noTerminales = list()
-    simboloInicial = ""
-    producciones = list()
+    def __init__(self):    
+        self._terminales = []
+        self._noTerminales = []
+        self._simboloInicial = ""
+        self._producciones = []
 
     def getSimboloInicial(self):
-        return self.simboloInicial
+        return self._simboloInicial
     
     def getTerminales(self):
-        return self.terminales
+        return self._terminales
 
     def getNoTerminales(self):
-        return self.noTerminales
+        return self._noTerminales
 
     def getProducciones(self):
-        return self.producciones
+        return self._producciones
 
     def setSimboloInicial(self, simboloInicial):
-        self.simboloInicial = simboloInicial
+        self._simboloInicial = simboloInicial
 
     def addTerminal(self, terminal):
-        self.terminales.append(terminal)
+        self._terminales.append(terminal)
 
     def addNoTerminal(self, noTerminal):
-        self.noTerminales.append(noTerminal)
+        self._noTerminales.append(noTerminal)
 
     def addProduccion(self, produccion):
-        self.producciones.append(produccion)
+        self._producciones.append(produccion)
 
     def imprimir(self):
-        print('Terminales: ', self.terminales)
-        print('No Terminales: ', self.noTerminales)
-        print('Simbolo Inicial: ', self.simboloInicial)
-        print('Producciones: ', self.producciones)
+        print('Terminales: ', self._terminales)
+        print('No Terminales: ', self._noTerminales)
+        print('Simbolo Inicial: ', self._simboloInicial)
+        print('Producciones: ', self._producciones)
         
             
