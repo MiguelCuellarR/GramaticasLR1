@@ -19,6 +19,7 @@ class ProduccionesEstado:
         return self._produccionR
 
     def addTerminal(self, terminal):
+        
         self._terminales.add(terminal)
 
     def setEstadoSiguiente(self, estadoSiguiente):
@@ -31,8 +32,9 @@ class ProduccionesEstado:
         mensaje = self._produccion + '  , '
         for term in self._terminales:
             mensaje += term + '| '
-        mensaje += '\n' + 'Siguiente: ' + self._estadoSiguiente
         if self._produccionR != '':
             mensaje += '\n' + self._produccionR
+        else:
+            mensaje += '       - ' + 'Siguiente: ' + self._estadoSiguiente
         mensaje += '\n'
         return mensaje

@@ -23,13 +23,14 @@ class LR1:
         prodEst.addTerminal('$')
         nombreEst = 'I-' + str(self._estados.__len__())
         self._crearEstado(nombreEst, prodEst)
+        
 
     def _crearEstado(self, nombre, produccion, trancision = None):
         estado = Estados(nombre, produccion, trancision)
         self._estados.append(estado)
         self._identificarProducciones(produccion, estado)
-        #estado.Imprimir()
         self._correrPunto(estado)
+        #estado.Imprimir()
         
 
     def _identificarProducciones(self, produccion, estado):
@@ -37,7 +38,7 @@ class LR1:
         der = partes[1]
         sig = der[der.find('.')+1]
         sigSimb = ''
-
+        
         if sig != ' ':
            sigSimb = der[der.find('.')+2]
 
@@ -82,6 +83,7 @@ class LR1:
                     nuevaprodEst.addTerminal(term)
 
                 estadoSiguiente = self._existeEstado(sig, nuevaprodEst)
+                #print('estado existente: ' + estadoSiguiente + ' -  simbolo: '+ sig)
                 if estadoSiguiente != '':
                     nuevaprodEst.setEstadoSiguiente(estadoSiguiente)
                     
@@ -91,6 +93,7 @@ class LR1:
                     self._crearEstado(nombreEstado, nuevaprodEst, sig)
             else:
                 self._buscarNumeroProduccion(produccion)
+                
             
     def _buscarNumeroProduccion(self, produccion):
         lista = self._gramatica.getProducciones()
@@ -105,7 +108,8 @@ class LR1:
             if estado.getTransicion() == simbolo:
                 for prodEstado in estado.getProducciones():
                     conjunto = prodEstado.getTerminales().intersection(produccion.getTerminales())
-                    if prodEstado.getProduccion() == produccion.getProduccion() and conjunto.__sizeof__() > 0:
+                    if prodEstado.getProduccion() == produccion.getProduccion() and conjunto.__len__() > 0:
+                        #print('' 'interseccion: ' + str(conjunto.__len__()) + str(conjunto)+ '  -  estado: '+ estado.getNombre())
                         return estado.getNombre()
         return ''
 
