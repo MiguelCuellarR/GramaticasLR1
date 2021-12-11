@@ -26,3 +26,14 @@ class ProduccionesEstado:
     
     def setProduccionR(self, produccionR):
         self._produccionR = produccionR
+
+    def Imprimir(self):
+        mensaje = self._produccion + '  , '
+        for term in self._terminales:
+            mensaje += term + '| '
+            
+        if self._estadoSiguiente is not None:
+            mensaje += '\n' + self._estadoSiguiente + '\n' + self._produccionR
+        else:
+            mensaje += '\n' + self._produccionR
+        return mensaje
