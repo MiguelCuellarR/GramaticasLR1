@@ -21,7 +21,7 @@ class Estados:
     def Imprimir(self):
         print(self._nombre)
         if self._trancision is not None:
-            print(self._trancision)
+            print('Transiciona con: ' + self._trancision)
         mensaje = ''
         for prod in self._producciones:
             mensaje += prod.Imprimir()

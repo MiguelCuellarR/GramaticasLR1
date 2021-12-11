@@ -8,9 +8,12 @@ gram = Gramatica()
 gram = fncGen.leerJson(ruta)
 
 lr1 = LR1(gram)
-#gram.imprimir()
+#ram.imprimir()
 
 lr1.analizar()
 
-
+#pal = ['hola.']
+lr1.imprimir()
+#print(pal[:pal.find('.')])
+#print(pal.__len__())
 

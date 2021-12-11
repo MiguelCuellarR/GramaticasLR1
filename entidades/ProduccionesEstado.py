@@ -3,7 +3,7 @@ class ProduccionesEstado:
     def __init__(self, produccion):
         self._produccion = produccion
         self._terminales = set()
-        self._estadoSiguiente = None
+        self._estadoSiguiente = ""
         self._produccionR = ""
  
     def getProduccion(self):
@@ -31,9 +31,8 @@ class ProduccionesEstado:
         mensaje = self._produccion + '  , '
         for term in self._terminales:
             mensaje += term + '| '
-            
-        if self._estadoSiguiente is not None:
-            mensaje += '\n' + self._estadoSiguiente + '\n' + self._produccionR
-        else:
+        mensaje += '\n' + 'Siguiente: ' + self._estadoSiguiente
+        if self._produccionR != '':
             mensaje += '\n' + self._produccionR
+        mensaje += '\n'
         return mensaje
