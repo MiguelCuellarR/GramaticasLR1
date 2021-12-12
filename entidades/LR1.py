@@ -37,7 +37,6 @@ class LR1:
         sig = der[der.find('.')+1]
         sigSimb = ''
     
-        
         if sig != ' ':
             sigSimb = der[der.find('.')+2]
 
@@ -49,19 +48,24 @@ class LR1:
                     for term in produccion.getTerminales():
                         prodEst.addTerminal(term)
                 else:
-                    self._buscarPrimero(sigSimb, prodEst)
+                    self._buscarPrimero(sigSimb, prodEst, produccion.getTerminales())
+
                 estado.addProduccion(prodEst)
                 self._identificarProducciones(prodEst, estado)
 
         
-    def _buscarPrimero(self, simbolo, produccionEst):
+    def _buscarPrimero(self, simbolo, produccionEst, produccion):
         if self._gramatica.getTerminales().__contains__(simbolo):
-            produccionEst.addTerminal(simbolo)
+            if simbolo == '&':
+                 for term in produccion:
+                        produccionEst.addTerminal(term)
+            else:
+                produccionEst.addTerminal(simbolo)
         elif self._gramatica.getNoTerminales().__contains__(simbolo):
             for prod in self._gramatica.getProducciones():
                 partes = prod.split('::')
                 if partes[0] == simbolo:
-                    self._buscarPrimero(partes[1][0], produccionEst)
+                    self._buscarPrimero(partes[1][0], produccionEst, produccion)
 
 
     def _correrPunto(self, estado):

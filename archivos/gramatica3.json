@@ -2,8 +2,9 @@
     "terminales": [
         "(",
         ")",
-        "id",
-        ","
+        "i",
+        ",",
+        "&"
     ],
     "noTerminales": [
         "S",
@@ -13,9 +14,9 @@
     "simboloInicial": "S",
     "producciones": [
         "S::(L)",
-        "S::id",
+        "S::i",
         "L::SJ",
         "J::,SJ",
-        "J:: "
+        "J::&"
     ]
 }

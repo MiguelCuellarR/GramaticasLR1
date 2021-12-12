@@ -28,7 +28,7 @@ class ProduccionesEstado:
         self._produccionR = produccionR
 
     def Imprimir(self):
-        mensaje = self._produccion + '  , '
+        mensaje = self._produccion + '  '
         for term in self._terminales:
             mensaje += term + '| '
         if self._produccionR != '':
