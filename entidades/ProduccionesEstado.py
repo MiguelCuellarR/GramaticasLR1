@@ -3,8 +3,8 @@ class ProduccionesEstado:
     def __init__(self, produccion):
         self._produccion = produccion
         self._terminales = set()
-        self._estadoSiguiente = ""
-        self._produccionR = ""
+        self._estadoSiguiente = ''
+        self._produccionR = ''
  
     def getProduccion(self):
         return self._produccion
@@ -19,11 +19,10 @@ class ProduccionesEstado:
         return self._produccionR
 
     def addTerminal(self, terminal):
-        
         self._terminales.add(terminal)
 
-    def setEstadoSiguiente(self, estadoSiguiente):
-        self._estadoSiguiente = estadoSiguiente
+    def setEstadoSiguiente(self, estSiguiente):
+        self._estadoSiguiente = estSiguiente
     
     def setProduccionR(self, produccionR):
         self._produccionR = produccionR

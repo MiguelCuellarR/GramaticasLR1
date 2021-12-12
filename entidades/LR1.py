@@ -29,18 +29,17 @@ class LR1:
         estado = Estados(nombre, produccion, trancision)
         self._estados.append(estado)
         self._identificarProducciones(produccion, estado)
-        self._correrPunto(estado)
-        #estado.Imprimir()
-        
+        self._correrPunto(estado)        
 
     def _identificarProducciones(self, produccion, estado):
         partes = produccion.getProduccion().split('::')
         der = partes[1]
         sig = der[der.find('.')+1]
         sigSimb = ''
+    
         
         if sig != ' ':
-           sigSimb = der[der.find('.')+2]
+            sigSimb = der[der.find('.')+2]
 
         for prod in self._gramatica.getProducciones():
             part = prod.split('::')
@@ -82,10 +81,11 @@ class LR1:
                 for term in produccion.getTerminales():
                     nuevaprodEst.addTerminal(term)
 
+                
                 estadoSiguiente = self._existeEstado(sig, nuevaprodEst)
-                #print('estado existente: ' + estadoSiguiente + ' -  simbolo: '+ sig)
                 if estadoSiguiente != '':
                     nuevaprodEst.setEstadoSiguiente(estadoSiguiente)
+                    produccion.setEstadoSiguiente(estadoSiguiente)
                     
                 else:
                     nombreEstado = 'I-' + str(self._estados.__len__())
@@ -101,17 +101,20 @@ class LR1:
         prod = prod[:prod.find('.')]
         for i in range (lista.__len__()):
             if lista[i] == prod:
-                produccion.setProduccionR('R-' + str(i))
+                if i != 0:
+                    produccion.setProduccionR('R-' + str(i))
+                else:
+                    produccion.setProduccionR('Aceptar')
 
     def _existeEstado(self, simbolo, produccion):
+        nombreEstado = ''
         for estado in self._estados:
             if estado.getTransicion() == simbolo:
                 for prodEstado in estado.getProducciones():
                     conjunto = prodEstado.getTerminales().intersection(produccion.getTerminales())
                     if prodEstado.getProduccion() == produccion.getProduccion() and conjunto.__len__() > 0:
-                        #print('' 'interseccion: ' + str(conjunto.__len__()) + str(conjunto)+ '  -  estado: '+ estado.getNombre())
-                        return estado.getNombre()
-        return ''
+                        nombreEstado = estado.getNombre()
+        return nombreEstado
 
     def imprimir(self):
         for estado in self._estados:
