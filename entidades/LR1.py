@@ -83,9 +83,10 @@ class LR1:
                     nuevaprodEst.addTerminal(term)
 
                 estadoSiguiente = self._existeEstado(sig, nuevaprodEst)
-                #print('estado existente: ' + estadoSiguiente + ' -  simbolo: '+ sig)
                 if estadoSiguiente != '':
                     nuevaprodEst.setEstadoSiguiente(estadoSiguiente)
+                    #print(nuevaprodEst.getEstadoSiguiente())
+                    produccion.setEstadoSiguiente(estadoSiguiente)
                     
                 else:
                     nombreEstado = 'I-' + str(self._estados.__len__())

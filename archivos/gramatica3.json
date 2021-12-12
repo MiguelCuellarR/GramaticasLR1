@@ -1,0 +1,21 @@
+{
+    "terminales": [
+        "(",
+        ")",
+        "id",
+        ","
+    ],
+    "noTerminales": [
+        "S",
+        "L",
+        "J"
+    ],
+    "simboloInicial": "S",
+    "producciones": [
+        "S::(L)",
+        "S::id",
+        "L::SJ",
+        "J::,SJ",
+        "J:: "
+    ]
+}
