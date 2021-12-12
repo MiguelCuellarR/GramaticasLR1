@@ -1,6 +1,6 @@
-from Gramatica import Gramatica
 from Estados import Estados
 from ProduccionesEstado import ProduccionesEstado
+
 class LR1:
 
     def __init__(self, gramatica):
@@ -23,7 +23,6 @@ class LR1:
         prodEst.addTerminal('$')
         nombreEst = 'I-' + str(self._estados.__len__())
         self._crearEstado(nombreEst, prodEst)
-        
 
     def _crearEstado(self, nombre, produccion, trancision = None):
         estado = Estados(nombre, produccion, trancision)
@@ -53,7 +52,6 @@ class LR1:
                 estado.addProduccion(prodEst)
                 self._identificarProducciones(prodEst, estado)
 
-        
     def _buscarPrimero(self, simbolo, produccionEst, produccion):
         if self._gramatica.getTerminales().__contains__(simbolo):
             if simbolo == '&':
@@ -66,7 +64,6 @@ class LR1:
                 partes = prod.split('::')
                 if partes[0] == simbolo:
                     self._buscarPrimero(partes[1][0], produccionEst, produccion)
-
 
     def _correrPunto(self, estado):
         for produccion in estado.getProducciones():
@@ -85,20 +82,33 @@ class LR1:
                 for term in produccion.getTerminales():
                     nuevaprodEst.addTerminal(term)
 
-                
                 estadoSiguiente = self._existeEstado(sig, nuevaprodEst)
                 if estadoSiguiente != '':
-                    nuevaprodEst.setEstadoSiguiente(estadoSiguiente)
                     produccion.setEstadoSiguiente(estadoSiguiente)
-                    
+                    nuevaprodEst.setEstadoSiguiente(estadoSiguiente)
                 else:
-                    nombreEstado = 'I-' + str(self._estados.__len__())
-                    produccion.setEstadoSiguiente(nombreEstado)
-                    self._crearEstado(nombreEstado, nuevaprodEst, sig)
+                    estadoTransicionado = self._buscarTransicionIgual(sig, estado)
+                    if estadoTransicionado == None:
+                        nombreEstado = 'I-' + str(self._estados.__len__())
+                        produccion.setEstadoSiguiente(nombreEstado)
+                        self._crearEstado(nombreEstado, nuevaprodEst, sig)
+                    else:
+                        produccion.setEstadoSiguiente(estadoTransicionado.getNombre())
+                        estadoTransicionado.addProduccion(nuevaprodEst)
+                        self._correrPunto(estadoTransicionado)
+                        
             else:
                 self._buscarNumeroProduccion(produccion)
                 
-            
+    def _buscarTransicionIgual(self, simboloTransicion, state):
+        estadoTransicionado = None
+        for estado in self._estados:
+            for produccionEst in state.getProducciones():
+                if produccionEst.getEstadoSiguiente() == estado.getNombre():
+                    if estado.getTransicion() == simboloTransicion:
+                        estadoTransicionado = estado
+        return estadoTransicionado
+    
     def _buscarNumeroProduccion(self, produccion):
         lista = self._gramatica.getProducciones()
         prod = produccion.getProduccion()
@@ -123,9 +133,3 @@ class LR1:
     def imprimir(self):
         for estado in self._estados:
             estado.Imprimir()
-
-        
-            
-            
-        
-

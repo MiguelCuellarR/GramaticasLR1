@@ -2,7 +2,8 @@ from FuncionesGenerales import FuncionesGenerales as fncGen
 from Gramatica import Gramatica
 from LR1 import LR1
 
-ruta = 'archivos\gramatica3.json'
+
+ruta = 'archivos\gramatica2.json'
 
 gram = Gramatica()
 gram = fncGen.leerJson(ruta)
